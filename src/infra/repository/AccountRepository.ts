@@ -24,8 +24,8 @@ export class AccountRepositoryDataBase implements AccountRepository {
     }
 
     public async list (): Promise<Account[]> {
-        const accountsData = await this.connection.query("SELECT * FROM account", []);
-        return accountsData.reduce((accounts, accountData) => {
+        const accountsData: any[] = await this.connection.query("SELECT * FROM account", []);
+        return accountsData.reduce((accounts: any[], accountData) => {
             accounts.push(new Account(accountData.account_id, accountData.name, accountData.email, accountData.password));
             return accounts;
         }, []);

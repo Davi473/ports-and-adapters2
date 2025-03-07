@@ -5,7 +5,9 @@ export class PgPromiseAdapter implements DatabaseConnection {
     public connection: any;
 
     constructor () {
-        this.connection = pgp()("postgres://postgres:123@localhost:5432/app");
+        const connet = process.env.CONNECT_DATABASE
+        if (!connet) throw new Error("Connect Base not exist");
+        this.connection = pgp()(connet);
     }
 
     query(statement: string, params: any): Promise<any> {
