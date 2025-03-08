@@ -5,7 +5,7 @@ axios.defaults.validateStatus = () => true;
 test("create account", async () => {
     const account = {
         name: "Test API",
-        email: `fulano${Math.random()}@gmail.com`,
+        email: `srcodorninha1@gmail.com`,
         password: "1234"
     }
     const responseAccount = await axios.post("http://localhost:3000/register", account);

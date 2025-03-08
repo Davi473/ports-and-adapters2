@@ -3,9 +3,9 @@ import Register from "./application/usecase/Account/Register";
 import AccountController from "./infra/controller/AccountController";
 import { ExpressAdapter } from "./infra/http/HttpServer";
 import { AccountRepositoryMemory } from "./infra/repository/AccountRepository";
-import dotenv from 'dotenv';
 import { SendEmailService } from "./infra/service/SendEmailService";
 import { SendEmailNodeMailer } from "./infra/sendEmail/SendEmail";
+import dotenv from 'dotenv';
 dotenv.config();
 
 const PORT = Number(process.env.PORT) || 3000;

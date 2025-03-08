@@ -10,6 +10,6 @@ export class SendEmailService {
 
     public send (to: string, name: string) {
         this.sendEmail.send(to, "Account created successfully",
-            `Your account has been successfully created Fulano ${name}`);
+            `Your account has been successfully created ${name}`);
     }
 }

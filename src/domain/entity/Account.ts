@@ -2,6 +2,7 @@ import { setEmitFlags } from "typescript";
 import Email from "../vo/Email";
 import Name from "../vo/Name";
 import Password, { PasswordFactory } from "../vo/Password";
+import crypto from "crypto";
 
 export default class Account {
     private name: Name;
