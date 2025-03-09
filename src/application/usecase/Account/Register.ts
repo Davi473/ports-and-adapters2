@@ -4,22 +4,22 @@ import UseCase from "../UseCase";
 import { SendEmailService } from "../../../infra/service/SendEmailService";
 
 export default class Register implements UseCase {
-    private accountRegister: AccountRepository;
+    private repository: AccountRepository;
     private sendEmail: SendEmailService
 
     constructor (
-        accountRegister: AccountRepository,
+        repository: AccountRepository,
         sendEmail: SendEmailService
     ) {
-        this.accountRegister = accountRegister;
+        this.repository = repository;
         this.sendEmail = sendEmail;
     }
 
     public async execute(input: Input): Promise<Output> {
-        const existingAccount = await this.accountRegister.getByEmail(input.email);
+        const existingAccount = await this.repository.getByEmail(input.email);
         if (existingAccount) throw new Error("Account already exists");
-        const account = Account.create(input.name, input.email, input.password);
-        await this.accountRegister.save(account);
+        const account = Account.create(input.name, input.email, input.password, false);
+        await this.repository.save(account);
         this.sendEmail.send(account.getEmail(), account.getName());
         return {
             accountId: account.accountId
