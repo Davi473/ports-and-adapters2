@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.validateStatus = () => true;
 
-test("create account", async () => {
+test("Register account", async () => {
     const account = {
         name: "Test API",
         email: `srcodorninha1@gmail.com`,
@@ -15,4 +15,14 @@ test("create account", async () => {
     expect(outputGetAccount.name).toBe(account.name);
     expect(outputGetAccount.email).toBe(account.email);
     expect(outputGetAccount.password).toBe(account.password);
+});
+
+test("Login account", async () => {
+    const login = {
+        email: "fulano@gmail.com",
+        password: "123"
+    };
+    const responseAccount = await axios.post("http://localhost:3000/login", login);
+    const outputAccount = responseAccount.data;
+    expect(!!outputAccount.token).toBe(true);
 });

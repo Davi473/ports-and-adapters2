@@ -6,6 +6,7 @@ import { AccountRepositoryMemory } from "./infra/repository/AccountRepository";
 import { SendEmailService } from "./infra/service/SendEmailService";
 import { SendEmailNodeMailer } from "./infra/sendEmail/SendEmail";
 import dotenv from 'dotenv';
+import Login from "./application/usecase/Account/Login";
 dotenv.config();
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -17,8 +18,10 @@ const sendEmail = new SendEmailNodeMailer();
 const sendEmailService = new SendEmailService(sendEmail);
 
 const register = new Register(database, sendEmailService);
+const login = new Login(database, sendEmailService);
 const getAccount = new GetAccount(database);
+const storeCode = new Stora
 
-const accountController = new AccountController(API, register, getAccount);
+new AccountController(API, register, login, getAccount);
 
 API.listen(PORT);

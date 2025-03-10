@@ -1,11 +1,13 @@
 import HttpServer from "../../application/http/HttpServer";
 import GetAccount from "../../application/usecase/Account/GetAccount";
+import Login from "../../application/usecase/Account/Login";
 import Register from "../../application/usecase/Account/Register";
 
 export default class AccountController {
     constructor (
         readonly httpServer: HttpServer,
         readonly register: Register,
+        readonly login: Login,
         readonly getAccount: GetAccount
     ) {
         this.httpServer.register("post", "/register", async (params: any, body: any) => {
@@ -23,7 +25,9 @@ export default class AccountController {
 
         this.httpServer.register("post", "/login", async (params: any, body: any) => {
             const input = body;
-            console.log("Login");
+            console.log("Login", input);
+            const output = await this.login.execute(input);
+            return output;
         });
     }
 }

@@ -8,8 +8,20 @@ export class SendEmailService {
         this.sendEmail = sendEmail;
     }
 
-    public send (to: string, name: string) {
+    public createdAccount (to: string, name: string): void {
         this.sendEmail.send(to, "Account created successfully",
             `Your account has been successfully created ${name}`);
+    }
+
+    public storeCode (to: string, name: string, code: string): void {
+        this.sendEmail.send(to, "Store Code",
+            `Hello ${name}, Your validation code: ${code}`
+        );
+    }
+
+    public validatedEmail (to: string, name: string): void {
+        this.sendEmail.send(to, "validated Email",
+            `Welcome ${name}, your account has been successfully validated.`
+        )
     }
 }
