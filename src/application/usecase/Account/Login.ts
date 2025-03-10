@@ -20,7 +20,7 @@ export default class Login implements UseCase {
     public async execute(input: Input): Promise<Output> {
         const existingAccount = await this.repository.getByEmail(input.email);
         if (!existingAccount) throw new Error("Account not already exists");
-        if (existingAccount.getActive()) throw new Error("Need to activate the account");
+        // if (existingAccount.getActive()) throw new Error("Need to activate the account");
         const token = jwt.sign({id: existingAccount.accountId, name: existingAccount.getName()}, 
             this.secretKey, { expiresIn: "15d" });
         this.sendEmail.send(existingAccount.getEmail(), existingAccount.getName());

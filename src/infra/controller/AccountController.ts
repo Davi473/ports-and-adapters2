@@ -20,5 +20,10 @@ export default class AccountController {
             const output = await this.getAccount.execute(accountId);
             return output;
         });
+
+        this.httpServer.register("post", "/login", async (params: any, body: any) => {
+            const input = body;
+            console.log("Login");
+        });
     }
 }
