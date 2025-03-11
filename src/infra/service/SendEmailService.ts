@@ -13,7 +13,7 @@ export class SendEmailService {
             `Your account has been successfully created ${name}`);
     }
 
-    public storeCode (to: string, name: string, code: string): void {
+    public storageCode (to: string, name: string, code: string): void {
         this.sendEmail.send(to, "Store Code",
             `Hello ${name}, Your validation code: ${code}`);
     }

@@ -23,7 +23,7 @@ export default class StorageCode implements UseCase {
         if (!existingAccount) throw new Error("Account not already exists");
         const code = await this.repositoryEmailValidation.generateCode();
         this.repositoryEmailValidation.storageCode(existingAccount.getEmail(), code);
-        this.sendEmail.storeCode(existingAccount.getEmail(), existingAccount.getName(), code);
+        this.sendEmail.storageCode(existingAccount.getEmail(), existingAccount.getName(), code);
     }
 }
 

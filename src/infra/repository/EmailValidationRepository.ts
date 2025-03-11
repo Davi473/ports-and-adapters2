@@ -8,7 +8,7 @@ export default class EmailValidationRepositoryMemory implements EmailValidationR
         return Math.floor(100000 + Math.random() * 900000).toString();
     }
 
-    public async storeCode(email: string, code: string): Promise<void> {
+    public async storageCode(email: string, code: string): Promise<void> {
         this.code.set(email, code);
     }
 

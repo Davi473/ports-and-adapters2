@@ -15,7 +15,8 @@ export default class GetAccount implements UseCase {
             accountId: account.accountId,
             name: account.getName(),
             email: account.getEmail(),
-            password: account.getPassword()
+            password: account.getPassword(),
+            active: account.getActive()
         };
     }
 
@@ -25,5 +26,6 @@ type Output = {
     accountId: string,
     name: string,
     email: string,
-    password: string
+    password: string,
+    active: boolean
 }

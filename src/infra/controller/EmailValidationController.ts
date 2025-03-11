@@ -9,14 +9,14 @@ export default class EmailValidationController {
         readonly storageCode: StorageCode,
         readonly verificationCode: VerificationCode
     ) {
-        this.httpServer.register("post", "/send-code", async (params: any, body: any) => {
+        this.httpServer.register("put", "/send-code", async (params: any, body: any) => {
             const input = body;
             console.log("send-code", input);
             const output = await this.storageCode.execute(input);
             return output;
         });
 
-        this.httpServer.register("post", "/check-code", async (params: any, body: any) => {
+        this.httpServer.register("put", "/check-code", async (params: any, body: any) => {
             const input = body;
             console.log("check-code", input)
             const output = await this.verificationCode.execute(input);

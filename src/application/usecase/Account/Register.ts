@@ -25,7 +25,6 @@ export default class Register implements UseCase {
             accountId: account.accountId
         };
     }
-
 }
 
 type Input = {

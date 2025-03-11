@@ -18,13 +18,15 @@ test("Register account", async () => {
 });
 
 test("Login account", async () => {
+    const name = "Fulano De Tal"
     const login = {
         email: "fulano@gmail.com",
         password: "123"
     };
-    const responseRegister = await axios.post("http://localhost:3000/register", {name: "Fulano De Tal", ...login});
+    const responseRegister = await axios.post("http://localhost:3000/register", {name, ...login});
     const responseGetAccount = await axios.get(`http://localhost:3000/account/${responseRegister.data.accountId}`);
-    expect(responseGetAccount.data.name)
+    expect(responseGetAccount.data.name).toBe(name);
+    const activeAccount = await axios.post("http://localhost:3000/")
     const responseAccount = await axios.post("http://localhost:3000/login", login);
     const outputAccount = responseAccount.data;
     expect(!!outputAccount.token).toBe(true);
