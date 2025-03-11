@@ -22,6 +22,9 @@ test("Login account", async () => {
         email: "fulano@gmail.com",
         password: "123"
     };
+    const responseRegister = await axios.post("http://localhost:3000/register", {name: "Fulano De Tal", ...login});
+    const responseGetAccount = await axios.get(`http://localhost:3000/account/${responseRegister.data.accountId}`);
+    expect(responseGetAccount.data.name)
     const responseAccount = await axios.post("http://localhost:3000/login", login);
     const outputAccount = responseAccount.data;
     expect(!!outputAccount.token).toBe(true);

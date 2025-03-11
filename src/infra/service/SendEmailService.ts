@@ -15,13 +15,16 @@ export class SendEmailService {
 
     public storeCode (to: string, name: string, code: string): void {
         this.sendEmail.send(to, "Store Code",
-            `Hello ${name}, Your validation code: ${code}`
-        );
+            `Hello ${name}, Your validation code: ${code}`);
     }
 
     public validatedEmail (to: string, name: string): void {
         this.sendEmail.send(to, "validated Email",
-            `Welcome ${name}, your account has been successfully validated.`
-        )
+            `Welcome ${name}, your account has been successfully validated.`);
+    }
+
+    public userLogin (to: string, name: string): void {
+        this.sendEmail.send(to, "Login",
+            `You just logged in ${name}`);
     }
 }

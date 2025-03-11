@@ -23,7 +23,7 @@ export default class Login implements UseCase {
         // if (existingAccount.getActive()) throw new Error("Need to activate the account");
         const token = jwt.sign({id: existingAccount.accountId, name: existingAccount.getName()}, 
             this.secretKey, { expiresIn: "15d" });
-        this.sendEmail.send(existingAccount.getEmail(), existingAccount.getName());
+        this.sendEmail.createdAccount(existingAccount.getEmail(), existingAccount.getName());
         return {
             token
         };

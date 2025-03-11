@@ -20,7 +20,7 @@ export default class Register implements UseCase {
         if (existingAccount) throw new Error("Account already exists");
         const account = Account.create(input.name, input.email, input.password, false);
         await this.repository.save(account);
-        this.sendEmail.createdAccount(account.getEmail(), account.getName());
+        await this.sendEmail.createdAccount(account.getEmail(), account.getName());
         return {
             accountId: account.accountId
         };

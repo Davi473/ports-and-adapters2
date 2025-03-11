@@ -7,6 +7,7 @@ import { SendEmailService } from "./infra/service/SendEmailService";
 import { SendEmailNodeMailer } from "./infra/sendEmail/SendEmail";
 import dotenv from 'dotenv';
 import Login from "./application/usecase/Account/Login";
+import StorageCode from "./application/usecase/EmailValidation/StorageCode";
 dotenv.config();
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -20,7 +21,7 @@ const sendEmailService = new SendEmailService(sendEmail);
 const register = new Register(database, sendEmailService);
 const login = new Login(database, sendEmailService);
 const getAccount = new GetAccount(database);
-const storeCode = new Stora
+// const storeCode = new StorageCode(database);
 
 new AccountController(API, register, login, getAccount);
 
